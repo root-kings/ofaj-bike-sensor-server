@@ -5,7 +5,7 @@ var Schema = mongoose.Schema
 
 var RecordSchema = new Schema({
 	date: {
-		type: String,
+		type: Date,
 		//required: true,
 		default: ''
 	},
