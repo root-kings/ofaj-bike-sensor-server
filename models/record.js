@@ -18,6 +18,18 @@ var RecordSchema = new Schema({
 	vehicle: {
 		type: String,
 		default: ''
+	},
+	lat: {
+		type: Number,
+		default: 0
+	},
+	lng: {
+		type: Number,
+		default: 0
+	},
+	speed: {
+		type: Number,
+		default: 0
 	}
 })
 

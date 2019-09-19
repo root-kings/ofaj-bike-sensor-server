@@ -31,7 +31,10 @@ exports.record_create_get = (req, res) => {
 		let record = new Record({
 			date: moment(state.date + ' ' + state.time + state.timeflg, 'DD-MM-YYYY hh:mm:ssA'),
 			fuel: state.fuel,
-			vehicle: state.vehicle
+            vehicle: state.vehicle,
+            lat: state.lat,
+            lng: state.lng,
+            speed: state.speed,
 		})
 
 		records.push(record)
