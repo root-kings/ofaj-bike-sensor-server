@@ -29,17 +29,17 @@ exports.record_create_get = (req, res) => {
 
 	data.forEach(state => {
 		let record = new Record({
-			date: moment(state.date + ' ' + state.time + state.timeflg, 'DD-MM-YYYY hh:mm:ssA'),
+			date: state.date == 0 ? moment() : moment(state.date + ' ' + state.time + state.timeflg, 'DD-MM-YYYY hh:mm:ssA'),
 			fuel: state.fuel,
-            vehicle: state.vehicle,
-            lat: state.lat,
-            lng: state.lng,
-            speed: state.speed,
+			vehicle: state.vehicle,
+			lat: state.lat,
+			lng: state.lng,
+			speed: state.speed
 		})
 
 		records.push(record)
 
-		// console.log(record)
+		console.log(record)
 	})
 
 	Record.insertMany(records)
@@ -49,5 +49,20 @@ exports.record_create_get = (req, res) => {
 		.catch(err => {
 			console.error(err)
 			return res.status(500).send(err)
+		})
+}
+
+exports.record_latest_get = (req, res) => {
+	let vehicle = req.params.vehicle
+
+	Record.find({ vehicle })
+		.sort({ date: -1 })
+		.limit(1)
+		.exec((err, record) => {
+			if (err) {
+				console.error(err)
+				return res.status(500).send(err)
+			}
+			res.send(record[0])
 		})
 }
