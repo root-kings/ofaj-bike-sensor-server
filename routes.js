@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const recordController = require('./controllers/recordController')
 
-router.post('/record/create', recordController.record_create_post)
+router.get('/record/create', recordController.record_create_get)
 
 module.exports = router
 

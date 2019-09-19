@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
-const favicon = require('serve-favicon')
+// const favicon = require('serve-favicon')
 // const session = require('express-session')
 
 const PORT = process.env.PORT || 3000
@@ -12,13 +12,13 @@ const DBPORT = process.env.MONGODB_URI
 
 let app = express()
 
-mongoose.connect(DBPORT, { useNewUrlParser: true })
+mongoose.connect(DBPORT, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = global.Promise
 
 let db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-app.use(logger('dev'))
+// app.use(logger('dev'))
 app.use(cors())
 
 app.use(
@@ -36,7 +36,7 @@ app.use(express.static('build'))
 app.set('view engine', 'pug')
 app.set('views', './views')
 
-app.use(favicon('./public/favicon.ico'))
+// app.use(favicon('./public/favicon.ico'))
 
 app.use('/', require('./routes'))
 
