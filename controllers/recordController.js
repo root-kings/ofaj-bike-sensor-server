@@ -26,7 +26,7 @@ exports.record_create_get = async (req, res) => {
         ]
     */
 
-	let vehicle = await Vehicle.find({ registration: data[0].vehicle.toUpperCase() })
+	let vehicle = await Vehicle.findOne({ registration: data[0].vehicle.toUpperCase() })
 
 	let records = []
 
@@ -55,8 +55,8 @@ exports.record_create_get = async (req, res) => {
 		})
 }
 
-exports.record_latest_get = (req, res) => {
-	let vehicle = Vehicle.find({ registration: req.params.vehicle })
+exports.record_latest_get = async (req, res) => {
+	let vehicle = await Vehicle.findOne({ registration: req.params.vehicle })
 
 	Record.find({ vehicle: vehicle._id })
 		.sort({ date: -1 })
