@@ -1,7 +1,8 @@
 const Record = require('../models/record')
+const Vehicle = require('../models/vehicle')
 const moment = require('moment')
 
-exports.record_create_get = (req, res) => {
+exports.record_create_get = async (req, res) => {
 	let data = JSON.parse(
 		req.query.data
 			.split("'")
@@ -25,13 +26,15 @@ exports.record_create_get = (req, res) => {
         ]
     */
 
+	let vehicle = await Vehicle.find({ registration: data[0].vehicle.toUpperCase() })
+
 	let records = []
 
 	data.forEach(state => {
 		let record = new Record({
 			date: state.date == 0 ? moment() : moment(state.date + ' ' + state.time + state.timeflg, 'DD-MM-YYYY hh:mm:ssA'),
 			fuel: state.fuel,
-			vehicle: state.vehicle,
+			vehicle: vehicle._id,
 			lat: state.lat,
 			lng: state.lng,
 			speed: state.speed
