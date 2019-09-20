@@ -18,7 +18,8 @@ const RecordSchema = new Schema(
 		},
 		vehicle: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Vehicle'
+			ref: 'Vehicle',
+			required: true
 		},
 		lat: {
 			type: Number,
