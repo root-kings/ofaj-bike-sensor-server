@@ -1,5 +1,9 @@
 const router = require('express').Router()
 
+router.get('/', (req, res) => {
+	return res.render('index')
+})
+
 const recordController = require('./controllers/recordController')
 const userController = require('./controllers/userController')
 const vehicleController = require('./controllers/vehicleController')
