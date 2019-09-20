@@ -56,9 +56,9 @@ exports.record_create_get = async (req, res) => {
 }
 
 exports.record_latest_get = (req, res) => {
-	let vehicle = req.params.vehicle
+	let vehicle = Vehicle.find({ registration: req.params.vehicle })
 
-	Record.find({ vehicle })
+	Record.find({ vehicle: vehicle._id })
 		.sort({ date: -1 })
 		.limit(1)
 		.exec((err, record) => {
@@ -66,6 +66,7 @@ exports.record_latest_get = (req, res) => {
 				console.error(err)
 				return res.status(500).send(err)
 			}
-			res.send(record[0])
+			if (!record.length) return res.send({})
+			return res.send(record[0])
 		})
 }

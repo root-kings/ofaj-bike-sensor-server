@@ -44,10 +44,12 @@ function updateData() {
 	fetch('/record/latest/MH36V6985')
 		.then(response => response.json())
 		.then(record => {
-			marker.setLatLng([record.lat, record.lng])
-			mymap.setView([record.lat, record.lng], 13)
-			fuelgauge.set(record.fuel)
-			speedgauge.set(record.speed)
+			if (record.lat && record.lng) {
+				marker.setLatLng([record.lat, record.lng])
+				mymap.setView([record.lat, record.lng], 13)
+			}
+			fuelgauge.set(record.fuel || 0)
+			speedgauge.set(record.speed || 0)
 		})
 }
 
