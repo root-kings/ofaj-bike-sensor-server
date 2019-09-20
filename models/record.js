@@ -1,9 +1,9 @@
-var mongoose = require('mongoose')
-var moment = require('moment')
+const mongoose = require('mongoose')
+const moment = require('moment')
 
-var Schema = mongoose.Schema
+const Schema = mongoose.Schema
 
-var RecordSchema = new Schema(
+const RecordSchema = new Schema(
 	{
 		date: {
 			type: Date,
@@ -17,8 +17,8 @@ var RecordSchema = new Schema(
 			default: 0
 		},
 		vehicle: {
-			type: String,
-			default: ''
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Vehicle'
 		},
 		lat: {
 			type: Number,

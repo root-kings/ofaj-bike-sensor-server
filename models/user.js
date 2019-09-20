@@ -1,23 +1,32 @@
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
+const Vehicle = require('./vehicle')
 
-var Schema = mongoose.Schema
+const Schema = mongoose.Schema
 
-var UserSchema = new Schema({
-	name: {
-		type: String
-	},
-	email: {
-		type: String
-	},
-	password: {
-		type: String
-	},
-	vehicles: [
-		{
-			type: mongoose.SchemaTypes.ObjectId,
-			ref: 'Vehicle'
+const UserSchema = new Schema(
+	{
+		name: {
+			type: String
+		},
+		email: {
+			type: String
+		},
+		password: {
+			type: String
 		}
-	]
+	},
+	{
+		toObject: {
+			virtuals: true
+		},
+		toJSON: {
+			virtuals: true
+		}
+	}
+)
+
+UserSchema.virtual('vehicles').get(async () => {
+	return await Vehicle.find({ owner: this._id })
 })
 
 //Export model
