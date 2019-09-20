@@ -11,8 +11,8 @@ const vehicleController = require('./controllers/vehicleController')
 router.get('/record/create', recordController.record_create_get)
 router.get('/record/latest/:vehicle', recordController.record_latest_get)
 
-router.get('/user/create', userController.user_create_post)
+router.post('/user/create', userController.user_create_post)
 
-router.get('/vehicle/create', vehicleController.vehicle_create_post)
+router.post('/vehicle/create', vehicleController.vehicle_create_post)
 
 module.exports = router
