@@ -1,9 +1,14 @@
 const router = require('express').Router()
 
 const recordController = require('./controllers/recordController')
+const userController = require('./controllers/userController')
+const vehicleController = require('./controllers/vehicleController')
 
 router.get('/record/create', recordController.record_create_get)
 router.get('/record/latest/:vehicle', recordController.record_latest_get)
 
-module.exports = router
+router.get('/user/create', userController.user_create_post)
 
+router.get('/vehicle/create', vehicleController.vehicle_create_post)
+
+module.exports = router

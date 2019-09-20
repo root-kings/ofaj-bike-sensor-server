@@ -4,6 +4,9 @@ const Schema = mongoose.Schema
 
 const VehicleSchema = new Schema(
 	{
+		registration: {
+			type: String
+		},
 		model: {
 			type: String,
 			default: ''
@@ -11,11 +14,11 @@ const VehicleSchema = new Schema(
 		make: {
 			type: String,
 			default: ''
-        },
-        owner: {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'User'
-        }
+		},
+		owner: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		}
 	},
 	{
 		toObject: {
@@ -26,10 +29,6 @@ const VehicleSchema = new Schema(
 		}
 	}
 )
-
-VehicleSchema.virtual('registration').get(() => {
-	return this._id.toUpperCase()
-})
 
 //Export model
 module.exports = mongoose.model('Vehicle', VehicleSchema)
