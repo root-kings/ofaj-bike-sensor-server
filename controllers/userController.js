@@ -28,3 +28,15 @@ exports.users_get = (req, res) => {
       return res.status(500).send(err)
     })
 }
+
+exports.user_login_post = (req, res) => {
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if (user && user.password == req.body.password) return res.send(true)
+      return res.send(false)
+    })
+    .catch(err => {
+      console.error(err)
+      return res.status(500).send(err)
+    })
+}
