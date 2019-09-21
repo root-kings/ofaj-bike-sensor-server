@@ -32,8 +32,9 @@ exports.users_get = (req, res) => {
 exports.user_login_post = (req, res) => {
   User.findOne({ email: req.body.email })
     .then(user => {
-      if (user && user.password == req.body.password) return res.send(true)
-      return res.send(false)
+      if (user && user.password == req.body.password)
+        return res.send({ status: true, user })
+      return res.send({ status: false })
     })
     .catch(err => {
       console.error(err)
