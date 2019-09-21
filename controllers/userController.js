@@ -9,8 +9,8 @@ exports.user_create_post = (req, res) => {
 
   user
     .save()
-    .then(savedUser => {
-      return res.send(savedUser)
+    .then(user => {
+      return res.send({ status: true, user })
     })
     .catch(err => {
       console.error(err)
