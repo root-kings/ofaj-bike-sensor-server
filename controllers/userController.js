@@ -43,3 +43,9 @@ exports.user_login_post = (req, res) => {
       return res.status(500).send(err)
     })
 }
+
+exports.user_login_check_get = (req, res) => {
+  if (req.session.user)
+    return res.send({ status: true, user: req.session.user })
+  return res.send({ status: false })
+}
