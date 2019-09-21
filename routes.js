@@ -15,6 +15,7 @@ router.post('/user/create', userController.user_create_post)
 router.get('/users', userController.users_get)
 router.post('/user/login', userController.user_login_post)
 router.get('/user/login/check', userController.user_login_check_get)
+router.get('/user/:user/vehicles', userController.user_vehicles_get)
 
 router.post('/vehicle/create', vehicleController.vehicle_create_post)
 

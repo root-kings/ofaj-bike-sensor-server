@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Vehicle = require('../models/vehicle')
 
 exports.user_create_post = (req, res) => {
   let user = new User({
@@ -48,4 +49,15 @@ exports.user_login_check_get = (req, res) => {
   if (req.session.user)
     return res.send({ status: true, user: req.session.user })
   return res.send({ status: false })
+}
+
+exports.user_vehicles_get = (req, res) => {
+  Vehicle.find({ owner: req.params.user })
+    .then(vehicles => {
+      res.send(vehicles)
+    })
+    .catch(err => {
+      console.error(err)
+      return res.status(500).send(err)
+    })
 }
