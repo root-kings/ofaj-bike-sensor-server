@@ -18,5 +18,6 @@ router.get('/user/login/check', userController.user_login_check_get)
 router.get('/user/:user/vehicles', userController.user_vehicles_get)
 
 router.post('/vehicle/create', vehicleController.vehicle_create_post)
+router.get('/vehicle/:id', vehicleController.vehicle_get)
 
 module.exports = router
