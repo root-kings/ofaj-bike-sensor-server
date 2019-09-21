@@ -12,6 +12,7 @@ router.get('/record/create', recordController.record_create_get)
 router.get('/record/latest/:vehicle', recordController.record_latest_get)
 
 router.post('/user/create', userController.user_create_post)
+router.get('/users', userController.users_get)
 
 router.post('/vehicle/create', vehicleController.vehicle_create_post)
 
