@@ -9,8 +9,10 @@ exports.record_create_get = async (req, res) => {
       .join('')
       .split(':,')
       .join(':0,')
+      .split('date":0')
+      .join('date":"0')
   )
-
+  // console.log(data)
   /*
         let data = [
             {
@@ -35,7 +37,7 @@ exports.record_create_get = async (req, res) => {
   data.forEach(state => {
     let record = new Record({
       date:
-        state.date == 0
+        state.date == 0 || state.date.split('-')[0]=='00'
           ? moment()
           : moment(
               state.date + ' ' + state.time + state.timeflg,
