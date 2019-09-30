@@ -12,7 +12,9 @@ exports.record_create_get = async (req, res) => {
       .split('date":0')
       .join('date":"0')
   )
-  // console.log(data)
+  console.log("formated:",data)
+  console.log("orig:",req.query.data)
+
   /*
         let data = [
             {
